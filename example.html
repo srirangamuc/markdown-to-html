@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown to HTML</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+      }
+      ul {
+        list-style-type: disc;
+        margin: 0;
+        padding: 0;
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      * Federated Learning is a way to train AI models without anyone seeing or
+      touching your data.
+    </p>
+    <ul>
+      <li>
+        Today's Data is moving towards <strong>A Decentralized Manner</strong> .
+      </li>
+      <li>
+        The newer AI Models are trained collaboratively on the edge, on the data
+        which doesn't leave your device.
+      </li>
+    </ul>
+    <h2>Introduction and History</h2>
+    <p></p>
+    <p>
+      * Google coined this term in 2016 ,at the time where misuse of user data
+      was a hot-topic.
+    </p>
+    <p>
+      * The main credit goes to Nathalie Baracaldo(Now Head of IBM's AI Privacy
+      and security), who was then pursuing his PhD, mentioned this term in his
+      landmark paper.
+    </p>
+    <h2>Importance of Federated Learning</h2>
+    <p></p>
+    * <strong>Privacy</strong> : Instead of data being sent to a centralized
+    server, FL allows for training to occur locally on the edge device,
+    preventing data breaches.
+    <p></p>
+    * <strong>Data Security</strong> : Only Encrypted Model Updates are shared
+    with the central server. Additionally, secure aggregation techniques like
+    <a
+      href="https://research.google/pubs/practical-secure-aggregation-for-federated-learning-on-user-held-data/#:~:text=Secure%20Aggregation%20is%20a%20class,their%20private%20value%20except%20what"
+      ><strong>Secure Aggregation Principle</strong></a
+    >
+    allow the decryption of only aggregated results .
+    <p></p>
+    * <strong>Access to Heterogenous Data</strong> : FL guarantees access to
+    data spread across multiple devices, locations and organizations, making it
+    possible to train models on sensitive data, like financial and healthcare,
+    while maintaining privacy and security. Due to this the models are more
+    generalizable and can be used for other purposes.
+    <h2>How does Federated Learning work?</h2>
+    <p></p>
+    <p>
+      * A generic baseline model is stored at central server. The copies of this
+      model are shared to the client devices , which trains the model on local
+      data of the user using the device .
+    </p>
+    <p>
+      * Overtime, these models the models on individual devices become
+      personalized to the user of the device and provide a better user
+      experience.
+    </p>
+    <p>
+      * In the next stage, updates from locally trained models are shared with
+      the main model located at the central server using secure aggregation
+      techniques.
+    </p>
+    <p>
+      * The model , then combines and averages different inputs to generate new
+      learnings. This makes the model more generalized.
+    </p>
+    <p>
+      * After being trained with the new parameters, it's shared with the client
+      devices again for the next iteration.
+    </p>
+    <p>
+      * With each iteration the model gathers various information and improve
+      further without creating privacy breaches.
+    </p>
+    <p>![[63dd0b6a89a72c6743b46b09_federated learning 2.webp]]</p>
+    <p></p>
+    <p></p>
+    <h2>Types of Federated Learning</h2>
+    <p></p>
+    <p>* There are three types of FL.</p>
+    <p></p>
+    <p>1. Centralized Federated Learning:</p>
+    <ul>
+      <li>
+        It requires a central server, which co-ordinates the selection of client
+        devices in the beginning and gathers the model updates during training.
+      </li>
+      <li>
+        The Communication happens only between the central server and the edge
+        devices.
+      </li>
+      <li>
+        This model poses a bottleneck problem, where network failures can halt
+        the process.
+      </li>
+      <li>![[63dd0bbd5a5e3b2accccdc3f_federated learning 1.webp]]</li>
+    </ul>
+    <p>2. Decentralized Federated Learning:</p>
+    <ul>
+      <li>
+        Doesn't require a central server to co-ordinate the learning. Instead
+        model updates are shared only among the interconnected edge devices.
+      </li>
+      <li>
+        The final model is obtained on an edge device by aggregating the local
+        updates of the connected edge devices.
+      </li>
+      <li>Prevents the possibility of a single point failure.</li>
+      <li>Accuracy depends on the network topology of edge devices.</li>
+      <li>![[63dd0be289a72c7e01b470ef_local model.webp]]</li>
+    </ul>
+    <p>3. Heterogenous Federated Learning:</p>
+    <ul>
+      <li>
+        Involves including heterogenous clients such as mobile phones, computers
+        or IoT devices. These devices differ in hardware, software and
+        computation capabilities.
+      </li>
+      <li>
+        Happens very rarely in real-world. to assume the local models'
+        attributes resemble that to of the main model.
+      </li>
+    </ul>
+    <p></p>
+    <h2>Federated Learning Algorithms</h2>
+    <p></p>
+    <p>1. Federated stochastic gradient descent (FedSGD) :</p>
+    <ul>
+      <li>
+        Regular Stochastic GD assumes data in mini-batches(fraction of whole
+        data)
+      </li>
+      <li>
+        In terms of FL , the mini batches can be considered different client
+        devices that comprise local data.
+      </li>
+      <li>
+        Central Model is distributed to the clients , and each client computes
+        the gradients using the local data.
+      </li>
+      <li>
+        These gradients re then passed to the central server, which aggregates
+        the gradients in proportion to the number of samples present on each
+        client to calculate the gradient descent step.
+      </li>
+    </ul>
+    <p>2. Federated Averaging (FedAvg):</p>
+    <ul>
+      <li>Extension of FedSGD Algorithm (Generalized form of FedSGD).</li>
+      <li>Clients can perform more than one local gradient descent update.</li>
+      <li>
+        Instead of sharing the gradients with the central server, weights tuned
+        on local model are shared.
+      </li>
+      <li>Finally the server aggregates the clients' weights.</li>
+      <li>
+        If all the clients begin from same initialization, averaging the
+        gradients is equal to averaging the weights.
+      </li>
+      <li>
+        Federated Averaging leaves room for tuning the local weights before
+        sending them to the central server for averaging.
+      </li>
+    </ul>
+    <p>3. Federated Learning with dynamic regularization(FedDyn):</p>
+    <ul>
+      <li>
+        Regularization in machine learning methods aims to add a penalty to the
+        loss function to improve the generalizability of the model.
+      </li>
+      <li>
+        In FL , the final and global loss of the central model is calculated
+        based on local losses generated from heterogenous devices.
+      </li>
+      <li>
+        FedDyn method aims to generate regularization term for local losses by
+        adapting to the data statistics, such as amount of the data or
+        communication cost.
+      </li>
+      <li>
+        This modification of local losses through dynamic regularization enables
+        local losses to converge to global loss.
+      </li>
+    </ul>
+    <p></p>
+    <h2>Challenges and limitations of Federated Learning</h2>
+    <p>1. Communication Efficiency:</p>
+    <ul>
+      <li>
+        The transfer of messages becomes slow due to several reasons : low
+        bandwidth ,lack of resources or geographical location.
+      </li>
+      <li>
+        To them efficient , the total number of message passes and the size of a
+        message in a single pass should be reduced .
+      </li>
+      <li>It can be achieved using</li>
+      <li>Local Updating (reduce number of rounds)</li>
+      <li>Model Compression (To reduce the size of the message)</li>
+      <li>Decentralized Training(to operate on low bandwidth)</li>
+    </ul>
+    <p>2. Privacy:</p>
+    <ul>
+      <li>
+        Although the local data stays on the user device, there's a risk for the
+        information to be revealed from the model updates shared in the central
+        network.
+      </li>
+      <li>Privacy Preserving Techniques include:</li>
+      <li>
+        Differential Privacy : Adding Noisy Data that makes it difficult to
+        discern real information in case of data leaks.
+      </li>
+      <li>
+        Homomorphic Encryption : Performing Computation on encrypted data.
+      </li>
+      <li>Secure multiparty computation :</li>
+      <li>
+        Spread the sensitive data to different data owners so that they can
+        collaboratively perform computation and reduce the risk of privacy
+        breach.
+      </li>
+    </ul>
+    <p>3. System Heterogeneity:</p>
+    <ul>
+      <li>
+        With large number of devices playing a role in FL Topology Network,
+        accounting for differences in storage, communication and computational
+        capabilities is a huge challenge. Additionally only a few devices
+        participating at a given time , lead to biased training.
+      </li>
+      <li>
+        These can be handled by the techniques of asynchronous communication,
+        active device sampling and fault tolerance.
+      </li>
+    </ul>
+    <p>4. Statistical heterogeneity:</p>
+    <ul>
+      <li>
+        This problem occurs when multiple variations of data present across the
+        client devices.(Like Quality and Geographic location of the data)
+      </li>
+      <li>
+        That means that data is non -i.i.d in a federated learning setting ,
+        which in contrast with assumption that i.i.d data in normal algorithms.
+      </li>
+      <li>
+        This causes problems in data structuring, modeling, and inferencing
+        phases.
+      </li>
+    </ul>
+    <p></p>
+    <h2>Real Life Application of FL in Medical and Healthcare Industry</h2>
+    <p></p>
+    <ul>
+      <li>
+        With Federated learning ,models can be trained through secure access to
+        data from patients and medical institutions while data remains at its
+        original premises.
+      </li>
+      <li>
+        This helps many institutions to collaborate with others and make it
+        possible for models to learn from more datasets securely.
+      </li>
+      <li></li>
+    </ul>
+    <p>![[63dd0c560c58c700a5ff6423_federated learning in healthcare.webp]]</p>
+    <p></p>
+  </body>
+</html>
